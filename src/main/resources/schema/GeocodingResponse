@@ -1,0 +1,75 @@
+{
+   "results" : [
+      {
+         "address_components" : [
+            {
+               "long_name" : "W4 5PY",
+               "short_name" : "W4 5PY",
+               "types" : [ "postal_code" ]
+            },
+            {
+               "long_name" : "Power Road",
+               "short_name" : "Power Rd",
+               "types" : [ "route" ]
+            },
+            {
+               "long_name" : "Chiswick",
+               "short_name" : "Chiswick",
+               "types" : [ "neighborhood", "political" ]
+            },
+            {
+               "long_name" : "London",
+               "short_name" : "London",
+               "types" : [ "locality", "political" ]
+            },
+            {
+               "long_name" : "London",
+               "short_name" : "London",
+               "types" : [ "postal_town" ]
+            },
+            {
+               "long_name" : "Greater London",
+               "short_name" : "Greater London",
+               "types" : [ "administrative_area_level_2", "political" ]
+            },
+            {
+               "long_name" : "United Kingdom",
+               "short_name" : "GB",
+               "types" : [ "country", "political" ]
+            }
+         ],
+         "formatted_address" : "Power Rd, Chiswick, London W4 5PY, UK",
+         "geometry" : {
+            "bounds" : {
+               "northeast" : {
+                  "lat" : 51.49535600000001,
+                  "lng" : -0.2784854
+               },
+               "southwest" : {
+                  "lat" : 51.4932898,
+                  "lng" : -0.2818197
+               }
+            },
+            "location" : {
+               "lat" : 51.4940716,
+               "lng" : -0.2798202
+            },
+            "location_type" : "APPROXIMATE",
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 51.4956718802915,
+                  "lng" : -0.2784854
+               },
+               "southwest" : {
+                  "lat" : 51.4929739197085,
+                  "lng" : -0.2818197
+               }
+            }
+         },
+         "partial_match" : true,
+         "place_id" : "ChIJEb9RzQoOdkgRmcuLjdoD9QI",
+         "types" : [ "postal_code" ]
+      }
+   ],
+   "status" : "OK"
+}

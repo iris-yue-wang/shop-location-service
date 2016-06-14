@@ -1,0 +1,15 @@
+spring:
+    cache:
+        # Cache name should always be shops.
+        cache-names: shops
+        guava:
+            spec: maximumSize=10000,expireAfterAccess=6000s
+
+# Geocoding endpoint address, should always use json format
+shop:
+    location:
+        geocoding:
+            endpoint: https://maps.googleapis.com/maps/api/geocode/json
+            
+logging:
+    file: shoplocationservice.log
