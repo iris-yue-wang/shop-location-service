@@ -4,6 +4,7 @@ Store geographic coordinates of a location and retrieve nearest location for a g
 ## Run the application
 ### To run the Spring Boot app, download the source code, and build using Maven 3:
 ```
+cd shop-location-service
 mvn package
 ```
 Create a .yml file, or download it from this repository:
@@ -26,6 +27,7 @@ logging:
 ```
 Run the built executable jar file in the same directory as the .yml file:
 ```
+cd shop-location-service/shop-location-service
 java -jar target/shop-location-service-0.0.1-SNAPSHOT.jar
 ```
 
@@ -53,10 +55,12 @@ Below is a sample response in JSON:
 ## Run tests
 ### Integration tests and unit tests can be run by running the following in shop-location-service module:
 ```
+cd shop-location-service/shop-location-service
 mvn verify
 ```
 
 ### BDD acceptance tests can be run by running the following in shop-location-tests module:
 ```
+cd shop-location-service/shop-location-tests
 mvn verify
 ```
