@@ -16,6 +16,9 @@
 		<jsonschema2pojo.maven.plugin.version>0.4.23</jsonschema2pojo.maven.plugin.version>
 		<guava.version>19.0</guava.version>
 		<start-class>org.shop.location.applicatio.App</start-class>
+		<serenity.version>1.1.36</serenity.version>
+		<serenity.jbehave.version>1.13.0</serenity.jbehave.version>
+		<assertj.version>3.4.1</assertj.version>
 	</properties>
 
 	<parent>
@@ -41,6 +44,40 @@
 				<groupId>com.google.guava</groupId>
 				<artifactId>guava</artifactId>
 				<version>${guava.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>net.serenity-bdd</groupId>
+				<artifactId>serenity-core</artifactId>
+				<version>${serenity.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>net.serenity-bdd</groupId>
+				<artifactId>serenity-rest-assured</artifactId>
+				<version>${serenity.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>net.serenity-bdd</groupId>
+				<artifactId>serenity-jbehave</artifactId>
+				<version>${serenity.jbehave.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>net.serenity-bdd</groupId>
+						<artifactId>serenity-core</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>junit</groupId>
+						<artifactId>junit</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+
+			<dependency>
+				<groupId>org.assertj</groupId>
+				<artifactId>assertj-core</artifactId>
+				<version>${assertj.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
@@ -81,6 +118,28 @@
 						<source>${java.version}</source>
 						<target>${java.version}</target>
 					</configuration>
+				</plugin>
+
+				<plugin>
+					<groupId>net.serenity-bdd.maven.plugins</groupId>
+					<artifactId>serenity-maven-plugin</artifactId>
+					<version>${serenity.maven.version}</version>
+					<dependencies>
+						<dependency>
+							<groupId>net.serenity-bdd</groupId>
+							<artifactId>serenity-core</artifactId>
+							<version>${serenity.version}</version>
+						</dependency>
+					</dependencies>
+					<executions>
+						<execution>
+							<id>serenity-reports</id>
+							<phase>post-integration-test</phase>
+							<goals>
+								<goal>aggregate</goal>
+							</goals>
+						</execution>
+					</executions>
 				</plugin>
 			</plugins>
 		</pluginManagement>
