@@ -22,6 +22,8 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import com.google.common.cache.Cache;
+
 /**
  * Implements ShopLocationService interface.
  * 
@@ -61,6 +63,8 @@ public class ShopLocationServiceImpl implements ShopLocationService {
 		// Get resposne from geocoding endpoint
 		GeocodingResponse geocodingResponse = restTemplate.getForObject(builder.toString(), GeocodingResponse.class);
 		List<Result> results = geocodingResponse.getResults();
+		
+		LOGGER.info("{} shop coordinate(s) retrieved.", results.size());
 		
 		// Transform geocoding response into Shop.
 		// Because there might be more than one result returned in the response,
@@ -104,8 +108,15 @@ public class ShopLocationServiceImpl implements ShopLocationService {
 		customerCoordinate.setLatitude(customerLatitude);
 		customerCoordinate.setLongitude(customerLongitude);
 		
-		// Get the concurrent map from cache.
-		ConcurrentMap<String, List<Shop>> shopCacheMap = (ConcurrentHashMap<String, List<Shop>>) cacheManager.getCache("shops").getNativeCache();
+		// Get the concurrent map from cache. Because of Serenity tests, we have to deal with guava.
+		// TODO This is horrible. Need a better way to do this...
+		ConcurrentMap<String, List<Shop>> shopCacheMap = new ConcurrentHashMap<String, List<Shop>>();
+		if (cacheManager.getCache("shops").getNativeCache() instanceof ConcurrentMap) {
+			shopCacheMap = (ConcurrentHashMap<String, List<Shop>>) cacheManager.getCache("shops").getNativeCache();
+		} else if (cacheManager.getCache("shops").getNativeCache() instanceof Cache<?, ?>) {
+			Cache<String, List<Shop>> cache = (Cache<String, List<Shop>>) cacheManager.getCache("shops").getNativeCache();
+			shopCacheMap = cache.asMap();
+		}
 
 		// Get the nearest shop.
 		Shop nearestShop = DistanceCalculator.retrieveNearestShop(customerCoordinate, shopCacheMap);

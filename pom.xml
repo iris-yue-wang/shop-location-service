@@ -15,10 +15,12 @@
 		<commons.lang.version>2.5</commons.lang.version>
 		<jsonschema2pojo.maven.plugin.version>0.4.23</jsonschema2pojo.maven.plugin.version>
 		<guava.version>19.0</guava.version>
-		<start-class>org.shop.location.applicatio.App</start-class>
+		<start-class>org.shop.location.App</start-class>
 		<serenity.version>1.1.36</serenity.version>
 		<serenity.jbehave.version>1.13.0</serenity.jbehave.version>
 		<assertj.version>3.4.1</assertj.version>
+		<maven.jar.plugin.version>3.0.0</maven.jar.plugin.version>
+		<failsafe.version>2.19.1</failsafe.version>
 	</properties>
 
 	<parent>
@@ -55,6 +57,12 @@
 			<dependency>
 				<groupId>net.serenity-bdd</groupId>
 				<artifactId>serenity-rest-assured</artifactId>
+				<version>${serenity.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>net.serenity-bdd</groupId>
+				<artifactId>serenity-spring</artifactId>
 				<version>${serenity.version}</version>
 			</dependency>
 
@@ -120,23 +128,54 @@
 					</configuration>
 				</plugin>
 
+				<!-- <plugin> -->
+				<!-- <groupId>net.serenity-bdd.maven.plugins</groupId> -->
+				<!-- <artifactId>serenity-maven-plugin</artifactId> -->
+				<!-- <version>${serenity.version}</version> -->
+				<!-- <dependencies> -->
+				<!-- <dependency> -->
+				<!-- <groupId>net.serenity-bdd</groupId> -->
+				<!-- <artifactId>serenity-core</artifactId> -->
+				<!-- <version>${serenity.version}</version> -->
+				<!-- </dependency> -->
+				<!-- </dependencies> -->
+				<!-- <executions> -->
+				<!-- <execution> -->
+				<!-- <id>serenity-reports</id> -->
+				<!-- <phase>post-integration-test</phase> -->
+				<!-- <goals> -->
+				<!-- <goal>aggregate</goal> -->
+				<!-- </goals> -->
+				<!-- </execution> -->
+				<!-- </executions> -->
+				<!-- </plugin> -->
+
 				<plugin>
-					<groupId>net.serenity-bdd.maven.plugins</groupId>
-					<artifactId>serenity-maven-plugin</artifactId>
-					<version>${serenity.maven.version}</version>
-					<dependencies>
-						<dependency>
-							<groupId>net.serenity-bdd</groupId>
-							<artifactId>serenity-core</artifactId>
-							<version>${serenity.version}</version>
-						</dependency>
-					</dependencies>
+					<artifactId>maven-failsafe-plugin</artifactId>
+					<version>${failsafe.version}</version>
+					<configuration>
+						<includes>
+							<include>**/tests/**/*.java</include>
+						</includes>
+					</configuration>
 					<executions>
 						<execution>
-							<id>serenity-reports</id>
-							<phase>post-integration-test</phase>
 							<goals>
-								<goal>aggregate</goal>
+								<goal>integration-test</goal>
+								<goal>verify</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-jar-plugin</artifactId>
+					<version>${maven.jar.plugin.version}</version>
+					<executions>
+						<execution>
+							<goals>
+								<goal>test-jar</goal>
 							</goals>
 						</execution>
 					</executions>
