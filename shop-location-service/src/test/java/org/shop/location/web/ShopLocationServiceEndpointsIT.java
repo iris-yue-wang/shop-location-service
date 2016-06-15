@@ -21,7 +21,7 @@ import org.springframework.web.client.RestTemplate;
  *
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = App.class)
+@SpringApplicationConfiguration(App.class)
 @WebIntegrationTest("server.port=0")
 public class ShopLocationServiceEndpointsIT {
 

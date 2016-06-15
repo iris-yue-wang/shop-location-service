@@ -88,26 +88,6 @@
 				</executions>
 			</plugin>
 
-<!-- 			<plugin> -->
-<!-- 				<groupId>net.serenity-bdd.maven.plugins</groupId> -->
-<!-- 				<artifactId>serenity-maven-plugin</artifactId> -->
-<!-- 				<dependencies> -->
-<!-- 					<dependency> -->
-<!-- 						<groupId>net.serenity-bdd</groupId> -->
-<!-- 						<artifactId>serenity-core</artifactId> -->
-<!-- 					</dependency> -->
-<!-- 				</dependencies> -->
-<!-- 				<executions> -->
-<!-- 					<execution> -->
-<!-- 						<id>serenity-reports</id> -->
-<!-- 						<phase>post-integration-test</phase> -->
-<!-- 						<goals> -->
-<!-- 							<goal>aggregate</goal> -->
-<!-- 						</goals> -->
-<!-- 					</execution> -->
-<!-- 				</executions> -->
-<!-- 			</plugin> -->
-
 			<plugin>
 				<artifactId>maven-failsafe-plugin</artifactId>
 				<configuration>
