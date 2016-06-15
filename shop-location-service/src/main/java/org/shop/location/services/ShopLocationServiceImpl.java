@@ -110,14 +110,20 @@ public class ShopLocationServiceImpl implements ShopLocationService {
 		// Get the nearest shop.
 		Shop nearestShop = DistanceCalculator.retrieveNearestShop(customerCoordinate, shopCacheMap);
 		
-		LOGGER.info("Nearest shop for (lat {} lon {}) is {}, {}, {} (lat {} lon {}.)",
-				customerLatitude,
-				customerLongitude,
-				nearestShop.getName(),
-				nearestShop.getAddress().getNumber(),
-				nearestShop.getAddress().getPostcode(),
-				nearestShop.getCoordinate().getLatitude(),
-				nearestShop.getCoordinate().getLongitude());
+		if (nearestShop != null) {
+			LOGGER.info("Nearest shop for (lat {} lon {}) is {}, {}, {} (lat {} lon {}.)",
+					customerLatitude,
+					customerLongitude,
+					nearestShop.getName(),
+					nearestShop.getAddress().getNumber(),
+					nearestShop.getAddress().getPostcode(),
+					nearestShop.getCoordinate().getLatitude(),
+					nearestShop.getCoordinate().getLongitude());
+		} else {
+			LOGGER.info("No nearest shop found for (lat {} lon {})",
+					customerLatitude,
+					customerLongitude);
+		}
 		
 		return nearestShop;
 	}
