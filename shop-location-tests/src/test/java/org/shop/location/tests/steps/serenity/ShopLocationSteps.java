@@ -1,6 +1,7 @@
 package org.shop.location.tests.steps.serenity;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 import java.util.List;
 
@@ -38,5 +39,9 @@ public class ShopLocationSteps {
 		assertEquals(name, nearestShop.getName());
 		assertEquals(number, nearestShop.getAddress().getNumber());
 		assertEquals(postcode, nearestShop.getAddress().getPostcode());
+	}
+	
+	public void verify_shop_location_null() {
+		assertNull(nearestShop);
 	}
 }

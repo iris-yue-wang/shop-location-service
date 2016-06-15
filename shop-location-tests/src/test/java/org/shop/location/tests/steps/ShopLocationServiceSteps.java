@@ -36,4 +36,9 @@ public class ShopLocationServiceSteps {
 	public void verifyNearestShop(String name, String number, String postcode) {
 		steps.verify_shop_location(name, number, postcode);
 	}
+	
+	@Then("I should see no nearest shop found")
+	public void verifyNearestShopNotFound() {
+		steps.verify_shop_location_null();
+	}
 }
